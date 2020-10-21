@@ -1,0 +1,53 @@
+SELECT pickup_datetime, dropoff_datetime, passenger_count, trip_distance 
+FROM `bigquery-public-data.new_york_taxi_trips.tlc_yellow_trips_2015` 
+LIMIT 1000
+
+
+
+
+SELECT *
+FROM `bigquery-public-data.new_york_taxi_trips.tlc_yellow_trips_2015` 
+WHERE vendor_id = '1'
+LIMIT 1000
+
+
+
+
+SELECT pickup_datetime, dropoff_datetime, passenger_count, trip_distance 
+FROM `bigquery-public-data.new_york_taxi_trips.tlc_yellow_trips_2015` 
+WHERE fare_amount >= 50
+LIMIT 1000
+
+
+
+
+SELECT EXTRACT(DAY FROM DATE '2019-12-25') as the_day, -- '일' 만 추출
+       EXTRACT(YEAR FROM DATE '2019-12-25') as the_year, -- '년' 만 추출
+       DATE_ADD(DATE '2019-03-25', INTERVAL 5 DAY) as five_days_later, -- 5일 더한 날짜 출력
+       DATE_DIFF(DATE '2019-03-25', DATE '2019-04-03', DAY) as date_diff, -- 두 날짜의 차 출력
+       DATE_TRUNC(DATE '2008-12-25', MONTH) as month, -- 월 까지 자름
+       PARSE_DATETIME('%Y-%m-%d %H:%M:%S', '2019-12-25 13:45:36') as datetime -- string을 datetime 형식으로 바꿔줌
+       
+       
+
+
+-- 2015년 1월 한달간 시간별 trips의 수를 구하시오
+SELECT 
+  EXTRACT(HOUR FROM pickup_datetime) as hour,
+  COUNT(pickup_datetime) as trip_cnt1,
+  COUNT(*) as trip_cnt2
+FROM `bigquery-public-data.new_york_taxi_trips.tlc_yellow_trips_2015` 
+WHERE EXTRACT(MONTH FROM pickup_datetime) = 1
+GROUP BY hour
+ORDER BY hour
+
+
+
+
+-- 요일별 trips의 수를 구하시오
+SELECT 
+  FORMAT_DATETIME('%u', pickup_datetime) as weekday,
+  COUNT(*) trip_cnt
+FROM `bigquery-public-data.new_york_taxi_trips.tlc_yellow_trips_2015` 
+GROUP BY weekday
+ORDER BY weekday

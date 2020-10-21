@@ -1,0 +1,36 @@
+{
+  "metrics": {
+    "steps": [
+      0
+    ],
+    "timestamps": [
+      "2020-10-20T12:23:59.663942"
+    ],
+    "values": [
+      {
+        "meta": {
+          "dtypes": {
+            "mae": "float64",
+            "mape": "float64",
+            "mse": "float64"
+          },
+          "index": "{\"py/object\": \"pandas.core.indexes.base.Index\", \"values\": \"[\\\"score\\\"]\", \"txt\": true, \"meta\": {\"dtype\": \"object\", \"name\": null}}"
+        },
+        "py/object": "pandas.core.frame.DataFrame",
+        "txt": true,
+        "values": "mape,mae,mse\r\n410.6999624575988,47.991885136076206,13871.771004075947\r\n"
+      }
+    ]
+  },
+  "model_name": {
+    "steps": [
+      0
+    ],
+    "timestamps": [
+      "2020-10-20T12:23:59.663942"
+    ],
+    "values": [
+      "LGBMRegressor"
+    ]
+  }
+}
